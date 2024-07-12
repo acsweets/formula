@@ -7,17 +7,19 @@ import 'count_provider.dart';
 /// CreateTime:  2024/7/12
 /// Contact Me:  1395723441@qq.com
 
-
 class SecretFetchButton extends ConsumerWidget {
   const SecretFetchButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-     var count = ref.watch(counterProvider);
-
-    return IconButton(onPressed:  count.when(
-
-
-    ), icon: Container());
-
-  }}
+    return IconButton(
+        onPressed: ref.watch(counterProvider).when(
+              data: (value) {
+                return () {};
+              },
+              error: (_, __) => () {},
+              loading: () => () {},
+            ),
+        icon: Container());
+  }
+}
